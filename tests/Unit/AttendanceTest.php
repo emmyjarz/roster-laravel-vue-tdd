@@ -37,13 +37,13 @@ class AttendanceTest extends TestCase
         $studentId = $student->first()->id;
 
         $this->put("/api/student-attendances/$studentId", [
-            'is_present' => true,
+            'is_present' => 1,
         ]);
         $this->put("/api/student-attendances/$studentId", [
-            'is_present' => false,
+            'is_present' => 0,
         ]);
         $this->assertDatabaseHas('student_attendances', [
-            'is_present' => false,
+            'is_present' => 0,
             'student_id' => $studentId
         ]);
     }
